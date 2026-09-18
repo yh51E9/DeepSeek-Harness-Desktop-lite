@@ -328,6 +328,9 @@ rem    图标颜色 C_ART、文字颜色 C_* 由 :init_colors 决定；非 wt 下全为空，
 rem    此时等同于纯文本横幅，不会出现转义字符乱码。
 rem ============================================================================
 :banner
+rem Re-assert GBK codepage: dsh 0.1.6 pwsh tool shell flips the console to UTF-8 (65001),
+rem and this script is GBK-encoded -- without this every banner redraw shows mojibake.
+chcp 936 >nul
 cls
 rem 运行状态配色：运行中=绿，其余=蓝灰。此处每次重算，
 rem 不能放进 :init_colors —— 那时 RUNSTATE 还没被赋值。
